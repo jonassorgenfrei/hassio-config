@@ -1,0 +1,85 @@
+# - id: '158346787648'
+#   name: prepWakeUp
+#   entities:
+#     group.ceilinglight:
+#       state: on
+#       brightness: 0
+#       color_temp: 153
+#     group.floorlamp:
+#       state: on
+#       brightness: 0
+#       color_temp: 153
+# - id: '158321367648'
+#   name: preWakeUp
+#   entities:
+#     group.ceilinglight:
+#       brightness: 8
+#       color_temp: 153
+#       transition: 240
+#     group.floorlamp:
+#       brightness: 10
+#       color_temp: 153
+#       transition: 240
+# - id: '15814631228633'
+#   name: finalWakeUp
+#   entities:
+#     group.ceilinglight:
+#       brightness: 200
+#       color_temp: 500
+#       transition: 80
+#     group.floorlamp:
+#       brightness: 200
+#       color_temp: 500
+#       transition: 80
+- id: '1581454213764'
+  name: sleeping15Min
+  entities:
+    group.ceilinglight:
+      state: on
+      brightness: 0
+      color_temp: 153
+      transition: 600
+    light.stehlampe_arm:
+      state: on
+      brightness: 0
+      color_temp: 153
+      transition: 600
+    light.stehlampe_top:
+      state: off
+      brightness: 0
+      transition: 0
+- id: '1581454312652'
+  name: sleeping
+  entities:
+    group.ceilinglight:
+      state: off
+      brightness: 0
+    light.stehlampe_arm:
+      state: on
+      brightness: 220
+      rgb_color: [10,0,255]
+    light.stehlampe_top:
+      state: off
+      brightness: 0
+#- id: '1581412343362'
+#  name: comingHome
+#  entities:
+#    group.ceilinglight:
+#      state: on
+#      brightness: 58
+#      color_temp: 280
+#    light.stehlampe_top:
+#      state: on
+#      brightness: 72
+#      color_temp: 280
+#    light.stehlampe_arm:
+#      state: on
+#      brightness: 61
+#      rgb_color: [200,255,182]
+- id: '1581413598362'
+  name: desk
+  entities:
+    light.schreibtisch:
+      state: on
+      brightness: 250
+      color_temp: 280

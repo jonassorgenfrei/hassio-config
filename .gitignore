@@ -1,0 +1,11 @@
+/.cloud
+/.storage
+/tts
+.HA_VERSION
+ip_bans.yaml
+secrets.yaml
+known_devices.
+*.db*
+*.log
+/.ssh
+.shopping_list.json

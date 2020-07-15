@@ -1,0 +1,7 @@
+binary_sensor.window:
+  device_class: window
+binary_sensor.door:
+  device_class: door
+switch.desktop:
+  friendly_name: Desktop
+  icon: mdi:desktop-tower-monitor

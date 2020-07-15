@@ -1,0 +1,11 @@
+script_wakeup:
+  # alias: Wake Up
+  # description: 'Turns on the lights after a delay'
+  sequence:
+    - service: script.scene_prepwakeup
+    - delay:
+        seconds: 5
+    - service: script.scene_prewakeup
+    - delay:
+        minutes: 4
+    - service: script.scene_finalwakeup

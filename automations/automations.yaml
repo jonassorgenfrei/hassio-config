@@ -1,0 +1,171 @@
+- id: '1581454573015'
+  alias: Phone Alarm Trigger
+  trigger:
+  - platform: template
+    value_template: "{{ ((as_timestamp(states('sensor.date_time').replace(',',''))
+      | int) + 5*60) == (state_attr('input_datetime.next_alarm', 'timestamp')
+      | int) and ((state_attr('input_datetime.next_alarm', 'timestamp') | int)
+      != (as_timestamp(now().strftime('%Y-%m-%d 00:00:00')) | int) + 24*60*60) }}"
+  condition:
+  - condition: state
+    entity_id: input_boolean.wake_up_trigger
+    state: 'on'
+  action:
+  - service: script.script_wakeup
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.wake_up_trigger
+- id: '1581544870574'
+  alias: toggleWakeUpTrigger
+  description: Schaltet den Wake Up Trigger aus
+  trigger:
+  - at: '02:00:00'
+    platform: time
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.wake_up_trigger
+- id: '1581544561587'
+  alias: Telegram bot to notify on boot
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - service: notify.jonas_telegram
+    data:
+      message: Home Assistant on Pi booted
+- id: '1581544864587'
+  alias: writeMessageWindowOpen
+  description: Nachricht wenn die Tuer offen ist
+  trigger:
+  - entity_id: binary_sensor.door
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.jonas_telegram
+    data:
+      message: Jonas Room Balcony Door was opened
+- id: '1684544864587'
+  alias: writeMessageWindowOpen
+  description: Nachricht wenn das Fenster offen ist
+  trigger:
+  - entity_id: binary_sensor.window
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: group.jonasroom
+    state: 'on'
+  action:
+  - service: notify.jonas_telegram
+    data:
+      message: Jonas Room Balcony Window was opened
+- id: '1684568752587'
+  alias: writeMessageLeftHouseAndLightOn
+  description: Nachricht wenn das Haus verlassen ist und Licht noch an ist
+  trigger:
+  - entity_id: person.jonas_sorgenfrei
+    from: 'home'
+    platform: state
+  condition: 
+    - condition: state
+      entity_id: group.jonasroom
+      state: 'on'
+  action:
+  - service: notify.jonas_telegram
+    data:
+      message: Light still on
+      data:
+        inline_keyboard :  
+        - "Turn Off:/turn_light_off"
+- id: 'newID145646132'
+  alias: Light on Coming early
+  description: Licht anschalten beim Nachhause kommen (late)
+  trigger:
+  - entity_id: person.jonas_sorgenfrei
+    platform: state
+    to: 'home'
+  condition: 
+    - condition: state  # from sunset until sunrise
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+  - service: script.scene_roomfull
+- id: '1684665468588'
+  alias: Light on Coming late
+  description: Licht anschalten beim Nachhause kommen (early)
+  trigger:
+  - entity_id: person.jonas_sorgenfrei
+    platform: state
+    to: 'home'
+  condition: 
+   - condition: state  # from sunset until sunrise
+     entity_id: sun.sun
+     state: 'above_horizon'
+  action:
+  - service: script.scene_roommedium
+- id: '1643244864587'
+  alias: Disable Heating While Window Open
+  description: Heizung aus wenn Fenster oder Tuer auf
+  trigger:
+  - entity_id: binary_sensor.window
+    platform: state
+    to: 'on'
+  - entity_id: binary_sensor.door
+    platform: state
+    to: 'on'
+  condition:
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: climate.thermostat_2
+        state: 'heat'
+      - condition: state
+        entity_id: climate.thermostat_2
+        state: 'auto'
+  action:
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.thermostat_2
+      hvac_mode: 'off'
+  - service: notify.jonas_telegram
+    data:
+      message: Automatic Heating turned off
+      data:
+        inline_keyboard :  
+        - "Turn Auto Heating On:/turn_auto_heating_on"
+- id: '16845543564587'
+  alias: Enable Heating when Window Closed
+  description: Heizung aus wenn Fenster oder Tuer auf
+  trigger:
+  - entity_id: binary_sensor.window
+    platform: state
+    to: 'off'
+  - entity_id: binary_sensor.door
+    platform: state
+    to: 'off'
+  condition:
+  - condition: and
+    conditions:
+      - condition: state 
+        entity_id: binary_sensor.door
+        state: 'off'
+      - condition: state 
+        entity_id: binary_sensor.window
+        state: 'off'
+  action:
+  - service: climate.set_hvac_mode
+    data:
+      entity_id: climate.thermostat_2
+      hvac_mode: 'auto'
+  # - service: climate.set_temperature
+  #   data:
+  #     entity_id: climate.thermostat_2
+  #     temperature: 22
+  - service: notify.jonas_telegram
+    data:
+      title: Automatic Heating turned back on
+      message: Windows/Door closed

@@ -1,0 +1,58 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+homeassistant:
+  customize: !include customize.yaml
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include_dir_merge_list automations/
+script: !include_dir_merge_named scripts/
+scene: !include scenes.yaml
+
+# HassAlarm App
+input_datetime:
+  next_alarm:
+    name: Next scheduled alarm
+    has_date: true
+    has_time: true
+
+# Current Time
+sensor:
+- platform: time_date
+  display_options:
+    - 'date_time'
+    
+input_boolean:
+  wake_up_trigger:
+    name: Wake Up Trigger
+    initial: off
+    icon: mdi:bed:empty
+
+notify:
+  - name: jonas_telegram
+    platform: telegram
+    chat_id: !secret TELEGRAM_CHAT_ID
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret TELEGRAM_TOKEN
+    allowed_chat_ids:
+      - !secret TELEGRAM_CHAT_ID
+
+shopping_list:
+
+wake_on_lan:
+
+switch:
+  - platform: wake_on_lan
+    name: Desktop
+    mac: !secret DESKTOP_MAC
+    host: !secret DESKTOP_HOST

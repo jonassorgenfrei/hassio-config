@@ -1,0 +1,40 @@
+scene_prepwakeup:
+  sequence:
+    - service: light.turn_on
+      data: 
+        entity_id: group.ceilinglight
+        brightness: 1
+        color_temp: 153
+        transition: 0
+    - service: light.turn_on
+      data: 
+        entity_id: group.floorlamp
+        brightness: 2
+        color_temp: 153
+        transition: 0
+scene_prewakeup:
+  sequence:
+    - service: light.turn_on
+      data: 
+        entity_id: group.ceilinglight
+        brightness: 8
+        transition: 240
+    - service: light.turn_on
+      data: 
+        entity_id: group.floorlamp
+        brightness: 10
+        transition: 240
+scene_finalwakeup:
+  sequence:
+    - service: light.turn_on
+      data: 
+        entity_id: group.ceilinglight
+        brightness: 200
+        color_temp: 500
+        transition: 60
+    - service: light.turn_on
+      data: 
+        entity_id: group.floorlamp
+        brightness: 200
+        color_temp: 500
+        transition: 60

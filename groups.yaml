@@ -1,0 +1,21 @@
+floorLamp:
+    name: Stehlampe
+    entities:
+        - light.stehlampe_arm
+        - light.stehlampe_top
+ceilingLight:
+    name: Deckenlampe
+    entities:
+        - light.schreibtisch
+        - light.unterm_bett
+        - light.regal
+        - light.balkon_tur
+jonasRoom:
+    name: Jonas Zimmer
+    entities:
+        - light.schreibtisch
+        - light.unterm_bett
+        - light.regal
+        - light.balkon_tur
+        - light.stehlampe_arm
+        - light.stehlampe_top
