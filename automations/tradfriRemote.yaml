@@ -1,0 +1,27 @@
+# center button short press
+# event 1002
+- id: "1581454495615"
+  alias: Tradfri On Off
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: "tradfriremote"
+        event: 1002
+  action:
+    - service: light.toggle
+      data:
+        entity_id:
+          - group.ceilinglight
+          - group.floorlamp
+# brightness up
+# event 2002
+
+# brightness down
+# event 3002
+
+# left
+# event 4002
+
+# right
+# event 5002

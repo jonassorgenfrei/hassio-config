@@ -1,0 +1,46 @@
+# power button light
+# event 1002
+- id: "1589565785415"
+  alias: Tint On Off
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: "tintremote"
+        event: 1002
+  action:
+    - service: light.toggle
+      data:
+        entity_id:
+          - group.ceilinglight
+          - group.floorlamp
+
+# color color temp lower
+# event 4002
+
+# color color temp higher
+# event 5002
+
+# color brightness lower
+# event 3002
+
+# color brightness higher
+# event 2002
+
+# color scene 1 - reading
+# event 7002
+
+# color scene 2 - bright
+# event 8002
+
+# color scene 3 - party
+# event 9002
+
+# color scene 4 - night
+# event 10002
+
+# color scene 5 - firepit
+# event 11002
+
+# color scene 6 - romantically
+# event 12002

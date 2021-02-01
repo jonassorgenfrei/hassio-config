@@ -1,21 +1,25 @@
 floorLamp:
-    name: Stehlampe
-    entities:
-        - light.stehlampe_arm
-        - light.stehlampe_top
+  name: Floor Lamp
+  entities:
+    - light.floorlamparm
+    - light.floorlamptopcolor
+    - light.floorlamptopwhite
 ceilingLight:
-    name: Deckenlampe
-    entities:
-        - light.schreibtisch
-        - light.unterm_bett
-        - light.regal
-        - light.balkon_tur
+  name: Ceiling Light
+  entities:
+    - light.desk
+    - light.underbed
+    - light.shelf
+    - light.balconydoor
 jonasRoom:
-    name: Jonas Zimmer
-    entities:
-        - light.schreibtisch
-        - light.unterm_bett
-        - light.regal
-        - light.balkon_tur
-        - light.stehlampe_arm
-        - light.stehlampe_top
+  name: Jonas Room
+  entities:
+    - switch.bedsidelamp
+    - climate.thermostat
+    - light.desk
+    - light.underbed
+    - light.shelf
+    - light.balconydoor
+    - light.floorlamparm
+    - light.floorlamptopcolor
+    - light.floorlamptopwhite

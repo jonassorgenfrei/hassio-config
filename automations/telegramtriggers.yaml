@@ -1,38 +1,37 @@
 # Trigger Telegram
-- id: '1684asdasdqw8588'
+- id: "1684asdasdqw8588"
   alias: Telegram turn Light off
   trigger:
     platform: event
     event_type: telegram_callback
     event_data:
-      command: '/turn_light_off'
+      command: "/turn_light_off"
   action:
-  - service: script.scene_jonasroomoff
-  - service: notify.jonas_telegram
-    data:
-      message: Light Turned Off
-- id: '1684a324234dqw8588'
+    - service: script.scene_jonasroomoff
+    - service: notify.jonas_telegram
+      data:
+        message: Light Turned Off
+- id: "1684a324234dqw8588"
   alias: Telegram turn Climate on
   trigger:
     platform: event
     event_type: telegram_callback
     event_data:
-      command: '/turn_auto_heating_on'
+      command: "/turn_auto_heating_on"
   condition:
     - condition: state
-      entity_id: climate.thermostat_2
-      state: 'off'
+      entity_id: climate.thermostat
+      state: "off"
   action:
-  - service: climate.set_hvac_mode
-    data:
-      entity_id: climate.thermostat_2
-      hvac_mode: 'auto'
-  # - service: climate.set_temperature
-  #   data:
-  #     entity_id: climate.thermostat_2
-  #     temperature: 22
-  - service: notify.jonas_telegram
-    data:
-      title: Automatic Heating turned back on
-      message: Manually may be not all Windows/Doors are closed
-      
+    - service: climate.set_hvac_mode
+      data:
+        entity_id: climate.thermostat
+        hvac_mode: "auto"
+    # - service: climate.set_temperature
+    #   data:
+    #     entity_id: climate.thermostat_2
+    #     temperature: 22
+    - service: notify.jonas_telegram
+      data:
+        title: Automatic Heating turned back on
+        message: Manually may be not all Windows/Doors are closed
