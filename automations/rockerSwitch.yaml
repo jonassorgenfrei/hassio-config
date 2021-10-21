@@ -1,0 +1,26 @@
+# left pressed and hold
+# event 1001
+
+# left pressed
+# event 1002
+- id: "6856825785415"
+  alias: Rocker On Off
+  trigger:
+    - platform: event
+      event_type: deconz_event
+      event_data:
+        id: "switch"
+        event: 1002
+  action:
+    - service: light.toggle
+      data:
+        entity_id:
+          - group.ceilinglight
+          - group.floorlamp
+
+
+# color color temp higher
+# event 2001
+
+# color brightness lower
+# event 2002
