@@ -7,7 +7,7 @@
       event_type: deconz_event
       event_data:
         id: "tradfriremote"
-        event: 1002
+        event: 2002
   action:
     - service: light.toggle
       data:
