@@ -47,6 +47,8 @@ telegram_bot:
     allowed_chat_ids:
       - !secret TELEGRAM_CHAT_ID
 
+sun:
+
 shopping_list:
 
 wake_on_lan:
