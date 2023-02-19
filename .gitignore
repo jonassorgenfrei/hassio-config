@@ -6,6 +6,6 @@ ip_bans.yaml
 secrets.yaml
 known_devices.
 *.db*
-*.log
+*.log*
 /.ssh
 .shopping_list.json

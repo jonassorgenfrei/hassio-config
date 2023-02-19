@@ -2,55 +2,26 @@ scene_roomfull:
   alias: Room Bright
   sequence:
     - service: light.turn_on
-      data: 
-        entity_id: group.ceilinglight
+      data:
+        entity_id: light.center_lamp_color
         brightness: 75
         color_temp: 342
         transition: 5
-    - service: light.turn_on
-      data: 
-        entity_id: light.stehlampe_top
-        brightness: 80
-        color_temp: 342
-        transition: 5
-    - service: light.turn_on
-      data: 
-        entity_id: light.stehlampe_arm
-        brightness: 2
-        color_temp: 342
-    - service: light.turn_on
-      data: 
-        entity_id: light.stehlampe_arm
-        brightness: 78
-        transition: 10
 scene_roommedium:
   alias: Room Medium
   sequence:
     - service: light.turn_on
-      data: 
-        entity_id: group.ceilinglight
+      data:
+        entity_id: light.center_lamp_color
         brightness: 35
         color_temp: 280
         transition: 5
-    - service: light.turn_on
-      data: 
-        entity_id: light.stehlampe_top
-        brightness: 35
-        color_temp: 342
-        transition: 5
-    - service: light.turn_on
-      data: 
-        entity_id: light.stehlampe_arm
-        brightness: 2
-        color_temp: 342
-    - service: light.turn_on
-      data: 
-        entity_id: light.stehlampe_arm
-        brightness: 35
-        transition: 10
 scene_jonasroomoff:
   alias: Room Off
   sequence:
     - service: light.turn_off
-      data: 
+      data:
+        entity_id: group.jonasroom
+    - service: switch.turn_off
+      data:
         entity_id: group.jonasroom

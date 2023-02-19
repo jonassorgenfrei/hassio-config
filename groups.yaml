@@ -1,25 +1,10 @@
-floorLamp:
-  name: Floor Lamp
-  entities:
-    - light.floorlamparm
-    - light.floorlamptopcolor
-    - light.floorlamptopwhite
-ceilingLight:
-  name: Ceiling Light
-  entities:
-    - light.desk
-    - light.underbed
-    - light.shelf
-    - light.balconydoor
 jonasRoom:
   name: Jonas Room
   entities:
     - switch.bedsidelamp
+    - switch.desk_lamp_plug
+    - switch.floor_lamp_switch
     - climate.thermostat
-    - light.desk
-    - light.underbed
-    - light.shelf
-    - light.balconydoor
-    - light.floorlamparm
-    - light.floorlamptopcolor
-    - light.floorlamptopwhite
+    - light.center_lamp_color
+    - light.mood_color_light
+    - light.ledbelowbed

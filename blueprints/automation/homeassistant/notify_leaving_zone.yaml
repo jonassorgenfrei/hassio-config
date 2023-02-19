@@ -1,4 +1,4 @@
-blueprint:
+eventblueprint:
   name: Zone Notification
   description: Send a notification to a device when a person leaves a specific zone.
   domain: automation
